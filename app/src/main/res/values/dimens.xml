@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_fab">16dp</dimen>
+    <dimen name="corner_radius_cv_notes_item_view">8dp</dimen>
+    <dimen name="margin_cv_notes_item_view">8dp</dimen>
+    <dimen name="padding_cl_notes_item_view">8dp</dimen>
+    <dimen name="text_title_size_notes_item_view">24sp</dimen>
+    <dimen name="text_desc_size_notes_item_view">14sp</dimen>
+    <dimen name="card_elevation_cv_notes_item_view">8dp</dimen>
+    <dimen name="edit_text_title_size_fragment_add_note">24sp</dimen>
+    <dimen name="text_title_size_fragment_view_note_dialog">24sp</dimen>
+    <dimen name="padding_et_fragment_add_note">8dp</dimen>
+    <dimen name="padding_et_fragment_view_note">8dp</dimen>
+    <dimen name="edit_text_desc_size_fragment_add_note">14sp</dimen>
+    <dimen name="text_desc_size_fragment_view_note_dialog">14sp</dimen>
+    <dimen name="text_save_note_instruction_size_fragment_add_note">10sp</dimen>
+    <dimen name="text_size_delete_note_button">12sp</dimen>
+    <dimen name="scrollview_height_fragment_add_note">0dp</dimen>
+    <dimen name="scrollview_width_fragment_add_note">0dp</dimen>
+    <dimen name="scrollview_height_fragment_view_note_dialog_fragment">0dp</dimen>
+    <dimen name="scrollview_width_fragment_view_note_dialog_fragment">0dp</dimen>
+</resources>
