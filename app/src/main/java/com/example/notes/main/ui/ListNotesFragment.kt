@@ -4,28 +4,25 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
-import com.example.notes.MainActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.example.notes.R
 import com.example.notes.databinding.FragmentListNotesBinding
-import com.example.notes.di.component.recycler.DaggerListNotesRecyclerComponent
 import com.example.notes.extensions.navigateTo
 import com.example.notes.main.adapter.NotesRecyclerAdapter
 import com.example.notes.main.vm.NotesViewModel
 import com.example.notes.room.entities.Note
-import dagger.android.support.DaggerFragment
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-class ListNotesFragment : DaggerFragment() {
+@AndroidEntryPoint
+class ListNotesFragment : Fragment() {
 
     @Inject
     lateinit var notesRecyclerAdapter: NotesRecyclerAdapter
 
     private lateinit var mBinding: FragmentListNotesBinding
-    private lateinit var mViewModel: NotesViewModel
-
-    @Inject
-    lateinit var mViewModelProvidersFactory: ViewModelProvider.Factory
+    private val mViewModel: NotesViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,16 +31,6 @@ class ListNotesFragment : DaggerFragment() {
         if (!::mBinding.isInitialized) mBinding =
             FragmentListNotesBinding.inflate(inflater, container, false)
         return mBinding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        DaggerListNotesRecyclerComponent.create().inject(this)
-
-        mViewModel = ViewModelProvider(
-            requireActivity() as MainActivity,
-            mViewModelProvidersFactory
-        ).get(NotesViewModel::class.java)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

@@ -5,19 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.example.notes.databinding.FragmentAddNotesBinding
 import com.example.notes.main.vm.NotesViewModel
-import dagger.android.support.DaggerFragment
-import javax.inject.Inject
+import dagger.hilt.android.AndroidEntryPoint
 
-class AddNotesFragment : DaggerFragment() {
+@AndroidEntryPoint
+class AddNotesFragment : Fragment() {
 
     private lateinit var mBinding: FragmentAddNotesBinding
-    private lateinit var mViewModel: NotesViewModel
-
-    @Inject
-    lateinit var mViewModelProvidersFactory: ViewModelProvider.Factory
+    private val mViewModel: NotesViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,14 +32,6 @@ class AddNotesFragment : DaggerFragment() {
         if (!::mBinding.isInitialized) mBinding =
             FragmentAddNotesBinding.inflate(inflater, container, false)
         return mBinding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        mViewModel = ViewModelProvider(
-            requireActivity(),
-            mViewModelProvidersFactory
-        ).get(NotesViewModel::class.java)
     }
 
     private val onBackPressedCallback = object : OnBackPressedCallback(true) {

@@ -5,8 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.notes.room.entities.Note
 import com.example.notes.databinding.NotesItemViewBinding
+import com.example.notes.room.entities.Note
 import javax.inject.Inject
 
 class NotesRecyclerAdapter @Inject constructor() :

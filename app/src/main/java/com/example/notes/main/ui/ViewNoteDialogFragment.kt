@@ -4,19 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.activityViewModels
 import com.example.notes.databinding.FragmentViewNoteDialogBinding
 import com.example.notes.main.vm.NotesViewModel
-import dagger.android.support.DaggerDialogFragment
-import javax.inject.Inject
+import dagger.hilt.android.AndroidEntryPoint
 
-class ViewNoteDialogFragment : DaggerDialogFragment() {
+@AndroidEntryPoint
+class ViewNoteDialogFragment : DialogFragment() {
 
     private lateinit var mBinding: FragmentViewNoteDialogBinding
-    private lateinit var mViewModel: NotesViewModel
-
-    @Inject
-    lateinit var mViewModelProvidersFactory: ViewModelProvider.Factory
+    private val mViewModel: NotesViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,14 +23,6 @@ class ViewNoteDialogFragment : DaggerDialogFragment() {
         if (!::mBinding.isInitialized) mBinding =
             FragmentViewNoteDialogBinding.inflate(inflater, container, false)
         return mBinding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        mViewModel = ViewModelProvider(
-            requireActivity(),
-            mViewModelProvidersFactory
-        ).get(NotesViewModel::class.java)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
